@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>crypto</title>
+
+        <meta charset="utf-8" />
+
+        <meta name="description" content="java crypto" />
+        <meta name="keywords" content="aqoleg java crypto" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#FFFFFF" />
+
+        <link rel="icon" href="https://aqoleg.com/icon.png" />
+        <style>
+            body {
+                margin: 32px auto;
+                width: 90%;
+                max-width: 1000px;
+                font-family: monospace;
+                overflow-wrap: break-word;
+            }
+            .code {
+                margin: 16px;
+                padding: 4px;
+                background: #F0F0F0;
+            }
+            a {
+                color: black;
+                outline: 0;
+            }
+            a:focus {
+                color: blue;
+            }
+            @media (hover: hover) {
+                a:hover {
+                    color: blue;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>crypto</h1>
+        <p>That's how
+            <a target="_blank" rel="noopener" href="https://aqoleg.com">i</a>
+            studied cryptography - by writing code.
+            There are four hash functions (sha256, sha512, ripemd160 and keccak shake128),
+            hash-based message authentication code using sha512, rsa cryptosystem and
+            elliptic curve cryptography. Check the
+            <a target="_blank" rel="noopener"
+               href="https://aqoleg.com/files/?path=/crypto">project files</a>.</p>
+        <h2>build</h2>
+        <p>Create source and output directories.</p>
+        <p class="code">$ mkdir -p src/com/aqoleg/crypto out</p>
+        <p>Download
+            <a target="_blank" rel="noopener"
+               href="https://aqoleg.com/files/?path=/crypto/src/com/aqoleg/crypto">java files</a>
+            .</p>
+        <p class="code">$ cd src/com/aqoleg/crypto/<br />
+            $ wget -i https://crypto.aqoleg.com/src/com/aqoleg/crypto/files.txt<br />
+            $ cd ../../../../</p>
+        <p>Compile.</p>
+        <p class="code">$ javac -d out src/com/aqoleg/crypto/*.java</p>
+        <p>Create jar file.</p>
+        <p class="code">$ cd out<br />$ jar cf ../Crypto.jar ./<br />$ cd ../</p>
+        <p>Directories <em>out</em>, <em>src</em> and file <em>Crypto.jar</em> will remain after all.</p>
+        <h2>test</h2>
+        <p>Build the jar file as described above, or download
+            <a target="_blank" rel="noopener"
+               href="https://crypto.aqoleg.com/Crypto.jar">Crypto.jar</a>.</p>
+        <p class="code">$ wget crypto.aqoleg.com/Crypto.jar</p>
+        <p>Create test and output directories.</p>
+        <p class="code">$ mkdir -p test/com/aqoleg/crypto/test out</p>
+        <p>Download
+            <a target="_blank" rel="noopener"
+               href="https://aqoleg.com/files/?path=/crypto/test/com/aqoleg/crypto/test">java
+                files</a>.</p>
+        <p class="code">$ cd test/com/aqoleg/crypto/test<br />
+            $ wget -i https://crypto.aqoleg.com/test/com/aqoleg/crypto/test/files.txt<br />
+            $ cd ../../../../../</p>
+        <p>Compile.</p>
+        <p class="code">$ javac -d out -cp Crypto.jar test/com/aqoleg/crypto/test/*.java</p>
+        <p>Run one test or all tests and read results.</p>
+        <p class="code">$ java -cp out:Crypto.jar com.aqoleg.crypto.test.Sha256Test<br />
+            $ java -cp out:Crypto.jar com.aqoleg.crypto.test.AllTests</p>
+        <p>Directories <em>out</em>, <em>test</em> and file <em>Crypto.jar</em>
+            will remain after all.</p>
+        <h2>use</h2>
+        <p>Build the jar file as described above, or download
+            <a target="_blank" rel="noopener"
+               href="https://crypto.aqoleg.com/Crypto.jar">Crypto.jar</a>.</p>
+        <p class="code">$ wget crypto.aqoleg.com/Crypto.jar</p>
+        <p>Create example.</p>
+        <p class="code">$ cat > Example.java</p>
+        <p>Copy-paste this example, then press <b>ctrl</b> + <b>D</b>.</p>
+        <p class="code">import com.aqoleg.crypto.Rsa;<br />
+            public class Example {<br />
+            &nbsp; public static void main(String args[]) {<br />
+            &nbsp; &nbsp; Rsa.KeyPair keyPair = Rsa.createKeyPair(1200);<br />
+            &nbsp; &nbsp; Rsa.PublicKey publicKey = keyPair.getPublicKey();<br />
+            &nbsp; &nbsp; String message = "so very secret message";<br />
+            &nbsp; &nbsp; System.out.println("message: " + message);<br />
+            &nbsp; &nbsp; byte[] encrypted = publicKey.encrypt(message.getBytes());<br />
+            &nbsp; &nbsp; System.out.println("encrypted message: " + new String(encrypted));<br />
+            &nbsp; &nbsp; byte[] decrypted = keyPair.decrypt(encrypted);<br />
+            &nbsp; &nbsp; System.out.println("decrypted message:" + new String(decrypted));<br />
+            &nbsp; }<br />
+            }</p>
+        <p>Compile.</p>
+        <p class="code">$ javac -cp Crypto.jar Example.java</p>
+        <p>Run.</p>
+        <p class="code">$ java -cp .:Crypto.jar Example</p>
+        <p>Files <em>Example.class</em>, <em>Example.java</em>, <em>Crypto.jar</em>
+            will remain after all.</p>
+        <h2>one more example</h2>
+        <p>Create source and output directories.</p>
+        <p class="code">$ mkdir -p src/com/aqoleg/crypto out</p>
+        <p>Download
+            <a target="_blank" rel="noopener"
+               href="https://aqoleg.com/files/?path=/crypto/src/com/aqoleg/crypto">java files</a>
+            .</p>
+        <p class="code">$ cd src/com/aqoleg/crypto/<br />
+            $ wget -i https://crypto.aqoleg.com/src/com/aqoleg/crypto/files.txt<br />
+            $ cd ../../../../</p>
+        <p>Download the example:
+            <a target="_blank" rel="noopener"
+               href="https://crypto.aqoleg.com/src/Example.java">
+                Example.java</a>.</p>
+        <p class="code">$ wget -O src/Example.java crypto.aqoleg.com/src/Example.java</p>
+        <p>Compile.</p>
+        <p class="code">$ javac -d out -cp src src/Example.java</p>
+        <p>Create jar file.</p>
+        <p class="code">$ cd out<br />$ jar cfe ../Example.jar Example ./<br />$ cd ../</p>
+        <p>Run and read results
+            0xcf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e
+            0xddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f.</p>
+        <p class="code">$ java -jar Example.jar<br />
+            $ java -jar Example.jar abc</p>
+        <p>Directories <em>out</em>, <em>src</em> and file <em>Example.jar</em> will remain after all.</p>
+        <script>
+            window.onload = function () {
+                var language = null;
+                if (typeof navigator.language === 'string') {
+                    language = navigator.language.substr(0, 2);
+                }
+                fetch('https://aqoleg.com/log', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        user: 'crypto',
+                        language: language,
+                        timeZone: new Date().getTimezoneOffset() / (-60)
+                    })
+                }).catch(console.error);
+            };
+        </script>
+    </body>
+</html>
